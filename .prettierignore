@@ -11,4 +11,8 @@ dist
 build
 public
 node_modules
+<<<<<<< HEAD
 vercel.json
+=======
+vercel.json
+>>>>>>> 932b82d5884f5cb9756ccc2b3a06f77c17db07c9
