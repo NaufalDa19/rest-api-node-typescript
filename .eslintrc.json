@@ -13,6 +13,13 @@
   "plugins": ["@typescript-eslint"],
   "ignorePatterns": ["/**/build/*", "**/node_modules/*", "**/public/*", "**/tsconfig.json"],
   "rules": {
-    "@typescript-eslint/restrict-template-expressions": "off"
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "array-callback-return": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-misused-promises": "off"
   }
 }

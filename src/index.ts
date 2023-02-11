@@ -1,12 +1,34 @@
-import express, { type Application, type Request, type Response, type NextFunction } from 'express'
+import bodyParser from 'body-parser'
+import express, { Application } from 'express'
+import { routes } from './routes'
+import { logger } from './utils/logger'
+import cors from 'cors'
+
+// connect DB
+import './utils/connectDB'
+
+import deserializeToken from './middleware/deserialized'
 
 const app: Application = express()
 const port: number = 3000
 
-app.use('/health', (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).send({ status: '200', data: 'Hello World!!!' })
+// parse body request
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+// cors access handler
+app.use(cors())
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', '*')
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  next()
 })
 
+app.use(deserializeToken)
+
+routes(app)
+
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`)
+  logger.info(`Server is listening on port ${port}`)
 })
